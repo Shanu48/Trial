@@ -1,0 +1,107 @@
+SQL> insert into participated values ('GJ0271','MH12AA2172',6715,5000);
+Driver ID: GJ0271
+Name: Alice
+Address: #101, Ulhas nagar
+Car Registration Number: MH12AA2172
+Accident Report Number: 6715
+Damage Amount: 5000
+Driver ID: GJ0271
+Name: Alice
+Address: #101, Ulhas nagar
+
+1 row created.
+
+SQL> delete from participated where driver_id='RJ1430' and report_no=4521;
+
+1 row deleted.
+
+SQL> select * from accident where report_no=4521;
+
+ REPORT_NO ACCD_DATE LOCATION             TOTAL_DAMAGE
+---------- --------- -------------------- ------------
+      4521 09-MAR-24 Andheri                     37000
+
+SQL> EXEC list_cars_with_high_damage(20000);
+Car Registration Number: MP00AY1472
+Accident Report Number: 4522
+Cumulative Damage: 30000
+-------------------------------
+Car Registration Number: KA20MB9036
+Accident Report Number: 4522
+Cumulative Damage: 22000
+-------------------------------
+Car Registration Number: KL51GH4216
+Accident Report Number: 6716
+Cumulative Damage: 45000
+-------------------------------
+Car Registration Number: MP00AY1472
+Accident Report Number: 6715
+Cumulative Damage: 25000
+-------------------------------
+Car Registration Number: KL51GH4216
+Accident Report Number: 1573
+Cumulative Damage: 50000
+-------------------------------
+
+PL/SQL procedure successfully completed.
+
+
+SQL> @D:\230953006\Lab7\ex4.sql
+
+Procedure created.
+
+SQL> EXEC identify_cars_multiple_accidents;
+Car Registration Number: MH12AA2172
+Number of Accidents: 2
+Total Damage: 17000
+-------------------------------
+Car Registration Number: KL51GH4216
+Number of Accidents: 2
+Total Damage: 95000
+-------------------------------
+Car Registration Number: MH02Ab4526
+Number of Accidents: 3
+Total Damage: 32000
+-------------------------------
+Car Registration Number: MP00AY1472
+Number of Accidents: 3
+Total Damage: 57500
+-------------------------------
+Car Registration Number: KA20MB9036
+Number of Accidents: 3
+Total Damage: 57000
+-------------------------------
+
+PL/SQL procedure successfully completed.
+
+SQL>
+
+
+PL/SQL procedure successfully completed.
+
+SQL> @D:\230953006\Lab7\ex5.sql
+
+Procedure created.
+
+SQL> EXEC average_damage_per_location;
+Location: Chennai
+Average Damage: 11666.67
+-------------------------------
+Location: Manipal
+Average Damage: 15000
+-------------------------------
+Location: Andheri
+Average Damage: 28500
+-------------------------------
+Location: Delhi
+Average Damage: 10000
+-------------------------------
+Location: Udupi
+Average Damage: 15416.67
+-------------------------------
+
+PL/SQL procedure successfully completed.
+
+
+
+
