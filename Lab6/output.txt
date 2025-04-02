@@ -1,0 +1,166 @@
+SQL> @D:\230953006\Lab6\ex1.sql
+
+Function created.
+
+SQL> @D:\230953006\Lab6\ex2.sql
+
+Warning: Procedure created with compilation errors.
+
+SQL> show errors;
+Errors for PROCEDURE TOTAL_DAMAGE_FOR_DRIVER_IN_YEAR:
+
+LINE/COL ERROR
+-------- -----------------------------------------------------------------
+7/5      PL/SQL: SQL Statement ignored
+9/42     PL/SQL: ORA-00904: "A"."REPORT_NUMBER": invalid identifier
+SQL> @D:\230953006\Lab6\ex2.sql
+
+Procedure created.
+
+SQL> @D:\230953006\Lab6\ex3.sql
+
+Warning: Procedure created with compilation errors.
+
+SQL> @D:\230953006\Lab6\ex3.sql
+
+Procedure created.
+
+SQL> @D:\230953006\Lab6\ex4.sql
+SQL> @D:\230953006\Lab6\ex4.sql
+SQL> @D:\230953006\Lab6\ex4.sql
+
+Procedure created.
+
+SQL> @D:\230953006\Lab6\ex5.sql
+
+Function created.
+
+SQL> SELECT total_accidents_in_year(2020) FROM DUAL;
+
+TOTAL_ACCIDENTS_IN_YEAR(2020)
+-----------------------------
+                            0
+
+SQL> select * from accident
+  2  ;
+
+ REPORT_NO ACCD_DATE LOCATION
+---------- --------- --------------------
+      4521 09-MAR-24 Andheri
+      6715 31-DEC-24 Manipal
+      1573 31-DEC-24 Andheri
+      3057 31-DEC-08 Udupi
+      2107 03-FEB-09 Manglore
+      9517 03-FEB-08 Manglore
+      4510 01-MAY-08 Delhi
+      3058 15-JUL-08 Chennai
+      4522 25-JUN-24 Andheri
+      6716 01-AUG-24 Udupi
+      3059 09-MAR-24 Andheri
+
+11 rows selected.
+
+SQL> SELECT total_accidents_in_year(2024) FROM DUAL;
+
+TOTAL_ACCIDENTS_IN_YEAR(2024)
+-----------------------------
+                            6
+
+SQL> SELECT total_accidents_in_year(2008) FROM DUAL;
+
+TOTAL_ACCIDENTS_IN_YEAR(2008)
+-----------------------------
+                            4
+
+SQL> EXEC total_damage_for_driver_in_year('D123', 2020);
+
+PL/SQL procedure successfully completed.
+
+SQL> select * from participated;
+
+DRIVER_ID  REGNO       REPORT_NO DAMAGE_AMOUNT
+---------- ---------- ---------- -------------
+GJ0271     MH12AA2172       4521         12000
+RJ1430     MP00AY1472       6715         25000
+RJ1430     KL51GH4216       1573         50000
+RJ1430     MP00AY1472       3057          2500
+MH2468     MH02Ab4526       4510         10000
+KA7960     KA20MB9035       3058         15000
+KL9031     GJ10XY0742       3058          8000
+RJ1430     MP00AY1472       4522         30000
+RJ1430     KL51GH4216       6716         45000
+MH2468     MH02Ab4526       3057         10000
+KA7960     KA20MB9036       3057         15000
+
+DRIVER_ID  REGNO       REPORT_NO DAMAGE_AMOUNT
+---------- ---------- ---------- -------------
+MH2468     MH02Ab4526       3058         12000
+RJ1430     GJ10XY0743       4521         25000
+KA7960     KA20MB9036       4522         22000
+
+14 rows selected.
+
+SQL> EXEC total_damage_for_driver_in_year('GJ0271', 2024);
+
+PL/SQL procedure successfully completed.
+
+SQL> select * from accident;
+
+ REPORT_NO ACCD_DATE LOCATION
+---------- --------- --------------------
+      4521 09-MAR-24 Andheri
+      6715 31-DEC-24 Manipal
+      1573 31-DEC-24 Andheri
+      3057 31-DEC-08 Udupi
+      2107 03-FEB-09 Manglore
+      9517 03-FEB-08 Manglore
+      4510 01-MAY-08 Delhi
+      3058 15-JUL-08 Chennai
+      4522 25-JUN-24 Andheri
+      6716 01-AUG-24 Udupi
+      3059 09-MAR-24 Andheri
+
+11 rows selected.
+
+SQL> EXEC total_damage_for_driver_in_year('RJ1430', 2024);
+
+PL/SQL procedure successfully completed.
+
+SQL> EXEC total_damage_for_driver_in_year('RJ1430', 2024);
+
+PL/SQL procedure successfully completed.
+
+SQL> @D:\230953006\Lab6\ex2.sql
+
+Procedure created.
+
+SQL> EXEC total_damage_for_driver_in_year('RJ1430', 2024);
+Total Damage for Driver RJ1430 in Year 2024 is 175000
+
+PL/SQL procedure successfully completed.
+
+SQL> @D:\230953006\Lab6\ex3.sql
+
+Procedure created.
+
+SQL> EXEC accident_info_by_location('Andheri');
+Report Number: 4521, Date: 09-MAR-24, Location: Andheri
+Report Number: 1573, Date: 31-DEC-24, Location: Andheri
+Report Number: 4522, Date: 25-JUN-24, Location: Andheri
+Report Number: 3059, Date: 09-MAR-24, Location: Andheri
+
+PL/SQL procedure successfully completed.
+
+SQL> EXEC drivers_not_involved_in_accidents;
+Driver ID: KA5678, Name: Rachel, Address: #456, Main Road
+Driver ID: MH3658, Name: June, Address: #803, 23rd street
+
+PL/SQL procedure successfully completed.
+
+SQL> SELECT total_accidents_for_car('MH02Ab4526') FROM DUAL;
+
+TOTAL_ACCIDENTS_FOR_CAR('MH02AB4526')
+-------------------------------------
+                                    3
+
+SQL>
