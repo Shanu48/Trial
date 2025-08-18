@@ -1,0 +1,1 @@
+firstTrial.o: firstTrial.asm
