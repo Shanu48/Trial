@@ -1,0 +1,187 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000                 AREA             RESET, DATA, READONLY
+    2 00000000                 EXPORT           __Vectors
+    3 00000000         
+    4 00000000         __Vectors
+    5 00000000 10001000        DCD              0x10001000  ; Initial Stack Poi
+                                                            nter
+    6 00000004 00000000        DCD              Reset_Handler ; Reset Handler A
+                                                            ddress
+    7 00000008         
+    8 00000008                 ALIGN
+    9 00000008         
+   10 00000008                 AREA             mycode, CODE, READONLY
+   11 00000000                 ENTRY
+   12 00000000                 EXPORT           Reset_Handler
+   13 00000000         
+   14 00000000         Reset_Handler
+   15 00000000 4813            LDR              R0, =N1     ; R0 -> first 128-b
+                                                            it number (in data 
+                                                            section)
+   16 00000002 4914            LDR              R1, =N2     ; R1 -> second 128-
+                                                            bit number (in data
+                                                             section)
+   17 00000004 4A14            LDR              R2, =Result ; R2 -> result arra
+                                                            y (in data section)
+                                                            
+   18 00000006         
+   19 00000006 F850 5B04       LDR              R5,[R0],#4
+   20 0000000A F851 6B04       LDR              R6,[R1],#4
+   21 0000000E 19AF            ADDS             R7,R5,R6
+   22 00000010 F842 7B04       STR              R7,[R2],#4
+   23 00000014 F04F 0303       MOV              R3, #3      ; Loop count (4 wor
+                                                            ds for 128-bit)
+   24 00000018         Loop
+   25 00000018 F850 5B04       LDR              R5, [R0], #4 
+                                                            ; Load word from N1
+                                                            
+   26 0000001C F851 6B04       LDR              R6, [R1], #4 
+                                                            ; Load word from N2
+                                                            
+   27 00000020 EB55 0706       ADCS             R7, R5, R6  ; Add with carry
+   28 00000024 F842 7B04       STR              R7, [R2], #4 ; Store result
+   29 00000028 1E5B            SUBS             R3, R3, #1  ; Decrement count
+   30 0000002A D1F5            BNE              Loop        ; Repeat if not zer
+                                                            o
+   31 0000002C         
+   32 0000002C         STOP
+   33 0000002C E7FE            B                STOP        ; Infinite loop
+   34 0000002E 00 00 FFFFFFFF 
+              00000002 
+              00000003 
+              00000004 N1      DCD              0xFFFFFFFF, 0x2, 0x3, 0x4
+   35 00000040 00000005 
+              00000006 
+              00000007 
+              00000008 N2      DCD              0x5, 0x6, 0x7, 0x8
+   36 00000050         ; ?? Move N1, N2, Result here into DATA section
+   37 00000050 00000000 
+              00000000 
+              00000000         AREA             mydata, DATA, READWRITE
+
+
+
+ARM Macro Assembler    Page 2 
+
+
+   38 00000000         
+   39 00000000         
+   40 00000000 00000000 
+              00000000 
+              00000000 
+              00000000 Result  DCD              0, 0, 0, 0  ; To store 128-bit 
+                                                            result (LSB to MSB)
+                                                            
+   41 00000010         
+   42 00000010                 END
+Command Line: --debug --xref --cpu=Cortex-M3 --apcs=interwork --depend=codeFile
+.d -ocodeFile.o -IC:\Keil\ARM\RV31\INC -IC:\Keil\ARM\CMSIS\Include -IC:\Keil\AR
+M\Inc\NXP\LPC17xx --predefine="__EVAL SETA 1" --list=codeFile.lst codeFile.asm
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+RESET 00000000
+
+Symbol: RESET
+   Definitions
+      At line 1 in file codeFile.asm
+   Uses
+      None
+Comment: RESET unused
+__Vectors 00000000
+
+Symbol: __Vectors
+   Definitions
+      At line 4 in file codeFile.asm
+   Uses
+      At line 2 in file codeFile.asm
+Comment: __Vectors used once
+2 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+Loop 00000018
+
+Symbol: Loop
+   Definitions
+      At line 24 in file codeFile.asm
+   Uses
+      At line 30 in file codeFile.asm
+Comment: Loop used once
+N1 00000030
+
+Symbol: N1
+   Definitions
+      At line 34 in file codeFile.asm
+   Uses
+      At line 15 in file codeFile.asm
+Comment: N1 used once
+N2 00000040
+
+Symbol: N2
+   Definitions
+      At line 35 in file codeFile.asm
+   Uses
+      At line 16 in file codeFile.asm
+Comment: N2 used once
+Reset_Handler 00000000
+
+Symbol: Reset_Handler
+   Definitions
+      At line 14 in file codeFile.asm
+   Uses
+      At line 6 in file codeFile.asm
+      At line 12 in file codeFile.asm
+
+STOP 0000002C
+
+Symbol: STOP
+   Definitions
+      At line 32 in file codeFile.asm
+   Uses
+      At line 33 in file codeFile.asm
+Comment: STOP used once
+mycode 00000000
+
+Symbol: mycode
+   Definitions
+      At line 10 in file codeFile.asm
+   Uses
+      None
+Comment: mycode unused
+6 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+Result 00000000
+
+Symbol: Result
+   Definitions
+      At line 40 in file codeFile.asm
+   Uses
+      At line 17 in file codeFile.asm
+Comment: Result used once
+mydata 00000000
+
+Symbol: mydata
+   Definitions
+      At line 37 in file codeFile.asm
+   Uses
+      None
+Comment: mydata unused
+2 symbols
+343 symbols in table
