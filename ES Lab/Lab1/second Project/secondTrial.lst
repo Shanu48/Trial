@@ -1,0 +1,97 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000                 AREA             RESET,DATA,READONLY
+    2 00000000                 EXPORT           __Vectors
+    3 00000000         __Vectors
+    4 00000000 00010001        DCD              0x00010001
+    5 00000004 00000000        DCD              Reset_Handler
+    6 00000008                 ALIGN
+    7 00000008                 AREA             mycode,CODE,READONLY
+    8 00000000                 ENTRY
+    9 00000000                 EXPORT           Reset_Handler
+   10 00000000         
+   11 00000000         Reset_Handler
+   12 00000000 4805            LDR              R0,=SRC
+   13 00000002 6801            LDR              R1,[R0]
+   14 00000004 4A05            LDR              R2,=0x10120
+   15 00000006 F04F 034E       LDR              R3,=2_1001110
+   16 0000000A E7FE    STOP    B                STOP
+   17 0000000C         
+   18 0000000C 12345678 
+              0000ABCD 
+              00A2B3C4 SRC     DCD              0x12345678,0xABCD,0xA2B3C4
+   19 00000018                 END
+              00000000 
+              00010120 
+Command Line: --debug --xref --cpu=Cortex-M3 --apcs=interwork --depend=secondTr
+ial.d -osecondTrial.o -IC:\Keil\ARM\RV31\INC -IC:\Keil\ARM\CMSIS\Include -IC:\K
+eil\ARM\Inc\NXP\LPC17xx --predefine="__EVAL SETA 1" --list=.\secondTrial.lst se
+condProject\secondTrial.asm
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+RESET 00000000
+
+Symbol: RESET
+   Definitions
+      At line 1 in file secondProject\secondTrial.asm
+   Uses
+      None
+Comment: RESET unused
+__Vectors 00000000
+
+Symbol: __Vectors
+   Definitions
+      At line 3 in file secondProject\secondTrial.asm
+   Uses
+      At line 2 in file secondProject\secondTrial.asm
+Comment: __Vectors used once
+2 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+Reset_Handler 00000000
+
+Symbol: Reset_Handler
+   Definitions
+      At line 11 in file secondProject\secondTrial.asm
+   Uses
+      At line 5 in file secondProject\secondTrial.asm
+      At line 9 in file secondProject\secondTrial.asm
+
+SRC 0000000C
+
+Symbol: SRC
+   Definitions
+      At line 18 in file secondProject\secondTrial.asm
+   Uses
+      At line 12 in file secondProject\secondTrial.asm
+Comment: SRC used once
+STOP 0000000A
+
+Symbol: STOP
+   Definitions
+      At line 16 in file secondProject\secondTrial.asm
+   Uses
+      At line 16 in file secondProject\secondTrial.asm
+Comment: STOP used once
+mycode 00000000
+
+Symbol: mycode
+   Definitions
+      At line 7 in file secondProject\secondTrial.asm
+   Uses
+      None
+Comment: mycode unused
+4 symbols
+339 symbols in table
